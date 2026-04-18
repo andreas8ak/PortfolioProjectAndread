@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andreas Kounavis | Portfolio</title>
+  <meta
+    name="description"
+    content="Portfolio website for Andreas Kounavis featuring profile, selected work, and contact information."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-2: #ece6dd;
+      --text: #171717;
+      --muted: #666;
+      --line: rgba(23, 23, 23, 0.1);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 30%),
+        linear-gradient(180deg, #f7f4ef 0%, #f2ede7 100%);
+      color: var(--text);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-shell {
+      width: min(100%, 1400px);
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
+      padding: 0.25rem;
+      border: 1px solid var(--line);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 0.98rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #111;
+      border-radius: 999px;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a.active {
+      background: #111;
+      color: #fff;
+    }
+
+    main {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .section,
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.2rem;
+      padding-top: 1rem;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .card,
+    .stat-tile,
+    .form-card,
+    .info-tile,
+    .dark-tile {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,250,245,0.88));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 3.2rem;
+    }
+
+    .hero-copy h1,
+    .page-hero h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .narrow {
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0.9rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid #111;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn-light {
+      background: transparent;
+      color: #111;
+      border-color: rgba(23, 23, 23, 0.18);
+    }
+
+    .hero-card {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .hero-card blockquote,
+    .quote-card blockquote {
+      margin: 1.25rem 0 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+
+    .section {
+      padding: 1rem 0;
+    }
+
+    .page-hero {
+      padding: 2.8rem 0 1rem;
+    }
+
+    .section-heading {
+      margin-bottom: 1.2rem;
+    }
+
+    .section-heading h2,
+    .card h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .three-up {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .two-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+      font-size: 1.12rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .split-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .clean-list {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .skill-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+
+    .tag-group span,
+    .project-tags span {
+      padding: 0.38rem 0.78rem;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .tool-panel {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .time-label,
+    .project-course,
+    .fact-label,
+    .info-tile-label {
+      display: inline-block;
+      margin-bottom: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+    }
+
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .fact-grid strong {
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    .stats-banner {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-tile {
+      background: linear-gradient(180deg, #111 0%, #222 100%);
+      color: #fff;
+      text-align: center;
+      padding: 1.2rem;
+    }
+
+    .stat-tile strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .stat-tile span {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-btn {
+      padding: 0.56rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(23,23,23,0.18);
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-card {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,250,245,0.88));
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .project-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--panel-2);
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+    }
+
+    .media-badge {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: #111;
+      color: #fff;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover .thumb-overlay {
+      opacity: 1;
+    }
+
+    .open-btn {
+      background: #fff;
+      color: #111;
+      padding: 0.75rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .project-body {
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      flex: 1;
+    }
+
+    .project-body h3 {
+      margin: 0;
+    }
+
+    .project-body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.2rem;
+    }
+
+    .project-tags .tl {
+      background: var(--panel-2);
+      color: var(--text);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .field-group,
+    .info-panel {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .field label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(23,23,23,0.15);
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #111;
+      box-shadow: 0 0 0 3px rgba(17,17,17,0.08);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0.9rem 1.8rem;
+      border-radius: 999px;
+      border: none;
+      font: inherit;
+      font-weight: 700;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      background: #333;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .success-icon {
+      display: block;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-tile {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.3rem;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #111;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-tile-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .info-tile-value {
+      font-weight: 600;
+    }
+
+    .dark-tile {
+      background: linear-gradient(180deg, #111 0%, #222 100%);
+      color: #fff;
+      padding: 1.7rem 1.4rem;
+    }
+
+    .dark-tile p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .quote-panel {
+      text-align: center;
+    }
+
+    .quote-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.2rem;
+    }
+
+    .site-footer {
+      max-width: var(--max);
+      margin: 1rem auto 0;
+      text-align: center;
+      color: var(--muted);
+      padding: 1rem 0 2rem;
+    }
+
+    .site-footer a {
+      text-decoration: underline;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      width: 100%;
+      max-width: 920px;
+      max-height: 92vh;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.35);
+    }
+
+    .lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lightbox-header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .lightbox-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .lightbox-body {
+      background: #000;
+    }
+
+    .lightbox-body video {
+      width: 100%;
+      max-height: 75vh;
+      display: block;
+    }
+
+    #empty-state {
+      display: none;
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .profile-grid,
+      .split-section,
+      .skill-wrap,
+      .tool-panel,
+      .timeline,
+      .project-grid,
+      .contact-grid,
+      .three-up,
+      .two-up {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid,
+      .timeline,
+      .skill-wrap,
+      .tool-panel,
+      .three-up,
+      .two-up,
+      .profile-grid,
+      .split-section,
+      .contact-grid,
+      .hero {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        border-radius: 24px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: flex;
+        margin-left: auto;
+      }
+
+      .site-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 0.5rem;
+      }
+
+      .site-nav.open {
+        display: flex;
+      }
+
+      .site-nav a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero,
+      .profile-grid,
+      .split-section,
+      .skill-wrap,
+      .tool-panel,
+      .timeline,
+      .project-grid,
+      .contact-grid,
+      .three-up,
+      .two-up,
+      .field-row,
+      .fact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .card,
+      .form-card,
+      .quote-card {
+        padding: 1.4rem;
+      }
+
+      .hero-copy h1,
+      .page-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .site-shell {
+        padding: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Home">
+        <img src="assets/logo_black.png" alt="Kounavis logo" class="brand-logo" />
+        <div>
+          <span class="eyebrow">Portfolio</span>
+          <strong>Andreas Kounavis</strong>
+        </div>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#profile">Profile</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Student • Creator • Coach</p>
+          <h1>I like designing with purpose, structure, and a strong eye for detail.</h1>
+          <p class="lead">
+            Andreas Kounavis is a second-year student, creative designer, and brand thinker
+            with a polished, organized approach to design and communication.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#work">View My Work</a>
+            <a class="btn btn-light" href="#profile">Full Profile</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="stat-row">
+            <span>Age</span>
+            <strong>19</strong>
+          </div>
+          <div class="stat-row">
+            <span>Location</span>
+            <strong>Ontario, Canada</strong>
+          </div>
+          <div class="stat-row">
+            <span>Education</span>
+            <strong>Media Studies, Sheridan College</strong>
+          </div>
+          <div class="stat-row">
+            <span>Focus</span>
+            <strong>Design and communication</strong>
+          </div>
+          <blockquote>
+            “I want my work to feel thoughtful, polished, and useful — not just visually nice.”
+          </blockquote>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Quick Snapshot</p>
+          <h2>A resume-inspired persona with clear priorities.</h2>
+        </div>
+
+        <div class="card-grid three-up">
+          <article class="card">
+            <h3>About Andreas</h3>
+            <p>
+              Andreas is ambitious, brand-aware, and highly self-motivated. He values quality work,
+              strong presentation, and projects that reflect both creativity and professionalism.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Main Goals</h3>
+            <p>
+              Build a standout portfolio, earn strong academic results, grow my personal brand,
+              and create work that feels portfolio-ready and teacher-approved.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Biggest Strength</h3>
+            <p>
+              He brings structure to everything he does — from design layouts and written work
+              to business planning and client communication.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-section">
+        <article class="card">
+          <p class="eyebrow">Motivations</p>
+          <h2>What drives me</h2>
+          <ul class="clean-list">
+            <li>Creating polished work I can be proud of</li>
+            <li>Building a future in creative and professional spaces</li>
+            <li>Helping others through design, organization, and support</li>
+            <li>Turning ideas into real, well-designed outcomes</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">Hobbies & Interests</p>
+          <h2>Outside the work</h2>
+          <ul class="clean-list">
+            <li>Soccer & golf</li>
+            <li>Investing, stocks & crypto</li>
+            <li>Video games</li>
+            <li>Star Wars</li>
+            <li>Geopolitics & Greek philosophy</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Core Skills</p>
+          <h2>What I bring to the table</h2>
+        </div>
+
+        <div class="skill-wrap">
+          <div class="card">
+            <h3>Creative</h3>
+            <div class="tag-group">
+              <span>Branding</span>
+              <span>Visual design</span>
+              <span>Photography</span>
+              <span>Content creation</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Professional</h3>
+            <div class="tag-group">
+              <span>Communication</span>
+              <span>Organization</span>
+              <span>Client support</span>
+              <span>Presentation</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Digital Tools</h3>
+            <div class="tag-group">
+              <span>Canva</span>
+              <span>Figma</span>
+              <span>Adobe Suite</span>
+              <span>HTML/CSS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">A Day In The Life</p>
+          <h2>How I typically move through work and school</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="card">
+            <span class="time-label">Morning</span>
+            <h3>Planning and priorities</h3>
+            <p>Starts with structure — checking tasks, organizing deadlines, and deciding what needs the most attention first.</p>
+          </article>
+
+          <article class="card">
+            <span class="time-label">Afternoon</span>
+            <h3>Design, classes, and deliverables</h3>
+            <p>Focuses on schoolwork, projects, design refinement, and making sure assignments feel polished and complete.</p>
+          </article>
+
+          <article class="card">
+            <span class="time-label">Evening</span>
+            <h3>Investing & winding down</h3>
+            <p>Shifts into researching stocks and crypto, gaming, or exploring geopolitics and philosophy.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="section page-hero" id="profile">
+        <p class="eyebrow">Full Persona Profile</p>
+        <h1>Professional, creative, and highly detail-oriented.</h1>
+        <p class="lead narrow">
+          This page expands on my background, values, experience, and working style.
+          It is designed to feel polished and resume-informed, while still reading like a persona.
+        </p>
+      </section>
+
+      <section class="section profile-grid">
+        <article class="card">
+          <p class="eyebrow">Profile Summary</p>
+          <h2>Who I am</h2>
+          <p>
+            I am a student with interests in design, communication, fitness,
+            and branding. I am ambitious, visually driven, and focused on creating work that looks refined,
+            feels intentional, and clearly reflects effort.
+          </p>
+          <p>
+            I work best when expectations are clear, the standard is high, and there is room to improve a project
+            until it feels fully finished.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">Quick Facts</p>
+          <div class="fact-grid">
+            <div>
+              <span class="fact-label">Personality</span>
+              <strong>Driven & organized</strong>
+            </div>
+            <div>
+              <span class="fact-label">Work Style</span>
+              <strong>Visual & structured</strong>
+            </div>
+            <div>
+              <span class="fact-label">Priority</span>
+              <strong>High-quality results</strong>
+            </div>
+            <div>
+              <span class="fact-label">Ideal Outcome</span>
+              <strong>Professional finish</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Experience & Background</p>
+          <h2>Where my strengths come from</h2>
+        </div>
+
+        <div class="card-grid two-up">
+          <article class="card">
+            <h3>Academic Life</h3>
+            <p>
+              I spend much of my time working on presentations, design projects, written assignments,
+              and digital deliverables. I care about formatting, clarity, and creating work that stands out.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Business Mindset</h3>
+            <p>
+              Alongside school, I think like a brand-builder. I value strong identity, consistency,
+              and polished communication that feels both personal and professional.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Background</h3>
+            <p>
+              My background in design and editing has made me an outside-the-box thinker —
+              I stay disciplined and turn plans into practical action.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Creative Approach</h3>
+            <p>
+              I enjoy design that feels elevated but clear — layouts that are modern, balanced,
+              and easy to navigate rather than cluttered or overcomplicated.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-section">
+        <article class="card">
+          <p class="eyebrow">Needs</p>
+          <h2>What helps me succeed</h2>
+          <ul class="clean-list">
+            <li>Clear instructions and deliverables</li>
+            <li>Time to refine and improve work</li>
+            <li>Layouts that support visual clarity</li>
+            <li>Constructive feedback with specifics</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">Expectations</p>
+          <h2>What I want from a project</h2>
+          <ul class="clean-list">
+            <li>A polished final product</li>
+            <li>A design that feels custom, not generic</li>
+            <li>Strong organization behind the scenes</li>
+            <li>Work that I would feel confident presenting</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Tools & Platforms</p>
+          <h2>Technology and software I use</h2>
+        </div>
+
+        <div class="tool-panel card">
+          <div>
+            <h3>Design</h3>
+            <div class="tag-group">
+              <span>Canva</span>
+              <span>Figma</span>
+              <span>Photoshop</span>
+              <span>Illustrator</span>
+            </div>
+          </div>
+          <div>
+            <h3>Web</h3>
+            <div class="tag-group">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>VS Code</span>
+            </div>
+          </div>
+          <div>
+            <h3>Workflow</h3>
+            <div class="tag-group">
+              <span>Google Docs</span>
+              <span>Slides</span>
+              <span>Zoom</span>
+              <span>Project planning</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="section page-hero" id="work">
+        <p class="eyebrow">Selected Work</p>
+        <h1>Projects, designs, and creative output.</h1>
+        <p class="lead narrow">
+          Real coursework and creative projects spanning UX design, branding,
+          motion graphics, and editorial design.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="stats-banner">
+          <div class="stat-tile"><strong>8</strong><span>Projects</span></div>
+          <div class="stat-tile"><strong>4</strong><span>Disciplines</span></div>
+          <div class="stat-tile"><strong>2+</strong><span>Years</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="filter-bar" id="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ux">UX Design</button>
+          <button class="filter-btn" data-filter="branding">Branding</button>
+          <button class="filter-btn" data-filter="motion">Motion</button>
+          <button class="filter-btn" data-filter="editorial">Editorial</button>
+          <button class="filter-btn" data-filter="advertising">Advertising</button>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          <article class="project-card" data-category="ux">
+            <div class="project-thumb-wrap">
+              <img src="assets/thumbs/final_casestudy-01.jpg" alt="DairyDrop UX Case Study" class="project-thumb" />
+              <a href="https://drive.google.com/file/d/1k_BZ8iSwxpR1jhTRAbftRHVh3MMoFc57/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                <span class="open-btn">View PDF ↗</span>
+              </a>
+            </div>
+            <div class="project-body">
+              <span class="project-course">INM300 · UX Design</span>
+              <h3>DairyDrop — Full UX Case Study</h3>
+              <p>A 32-page end-to-end UX process document for a mobile dairy delivery app.</p>
+              <div class="project-tags">
+                <span>UX Design</span><span>Case Study</span><span class="tl">32 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ux">
+            <div class="project-thumb-wrap">
+              <img src="assets/thumbs/wireframe-1.jpg" alt="DairyDrop Wireframes" class="project-thumb" />
+              <a href="https://drive.google.com/file/d/1bv4Rkp77MPowzr_11pI5NbhrunQaUEuZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                <span class="open-btn">View PDF ↗</span>
+              </a>
+            </div>
+            <div class="project-body">
+              <span class="project-course">INM300 · UX Design</span>
+              <h3>DairyDrop — Wireframes</h3>
+              <p>Eight speed sketches and refined wireframe layouts exploring navigation and hierarchy.</p>
+              <div class="project-tags">
+                <span>Wireframing</span><span>UX Design</span><span class="tl">6 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ux">
+            <div class="project-thumb-wrap">
+              <img src="assets/thumbs/userflows-1.jpg" alt="DairyDrop User Flows" class="project-thumb" />
+              <a href="https://drive.google.com/file/d/1Opk6TwUG-9lHj8zZiugMuM491xFYePY8/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                <span class="open-btn">View PDF ↗</span>
+              </a>
+            </div>
+            <div class="project-body">
+              <span class="project-course">INM300 · UX Design</span>
+              <h3>DairyDrop — User Flows</h3>
+              <p>Complete user flow diagrams for onboarding, browsing, checkout, and tracking.</p>
+              <div class="project-tags">
+                <span>User Flows</span><span>UX Design</span><span class="tl">6 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="branding">
+            <div class="project-thumb-wrap">
+              <img src="assets/thumbs/nike_brand-1.jpg" alt="Nike Brand Persona" class="project-thumb" />
+              <a href="https://drive.google.com/file/d/1sDYv-Qg-Q-uwW_nSeSfGJ-mZl_gJMlef/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                <span class="open-btn">View PDF ↗</span>
+              </a>
+            </div>
+            <div class="project-body">
+              <span class="project-course">INM310 · Branding</span>
+              <h3>Nike — Brand Persona & Value Proposition</h3>
+              <p>Strategic brand analysis including persona development and value proposition design.</p>
+              <div class="project-tags">
+                <span>Branding</span><span>Strategy</span><span class="tl">6 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="advertising">
+            <div class="project-thumb-wrap">
+              <img src="assets/thumbs/app_cause-01.jpg" alt="Ocean Cause Campaign" class="project-thumb" />
+              <a href="https://drive.google.com/file/d/1ROIlGYIQuYMzyM4m6BqwVon7vEPD8AE8/view" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                <span class="open-btn">View PDF ↗</span>
+              </a>
+            </div>
+            <div class="project-body">
+              <span class="project-course">INM204 · Advertising</span>
+              <h3>Ocean Cause — Tesla Sponsored Campaign</h3>
+              <p>A cause-marketing campaign built around environmental awareness and sponsored storytelling.</p>
+              <div class="project-tags">
+                <span>Advertising</span><span>Campaign</span><span class="tl">10 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="editorial">
+            <div class="project-thumb-wrap">
+              <img src="assets/thumbs/magazine-1.jpg" alt="Magazine Spread" class="project-thumb" />
+              <a href="https://drive.google.com/file/d/1la4O8iAnxiA31tATnCVYzda_bwXxs5hu/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                <span class="open-btn">View PDF ↗</span>
+              </a>
+            </div>
+            <div class="project-body">
+              <span class="project-course">INM100 · Editorial Design</span>
+              <h3>Magazine Spread — Feature Article</h3>
+              <p>A final editorial spread focused on typography, composition, and hierarchy.</p>
+              <div class="project-tags">
+                <span>Editorial</span><span>Print Design</span><span class="tl">3 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="motion">
+            <div class="project-thumb-wrap">
+              <div class="thumb-placeholder" style="background: linear-gradient(135deg,#1a1a2e,#16213e);">🎬</div>
+              <span class="media-badge">Video</span>
+              <a href="https://drive.google.com/file/d/1wpo4V15AgS2UIk9nRpFp00iFCCd-dZmA/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                ▶ Play Video
+              </button>
+            </div>
+            <div class="project-body">
+              <span class="project-course">Motion Design</span>
+              <h3>Motion Graphics — A3 Assignment</h3>
+              <p>A motion graphics video focused on animation, timing, and visual storytelling.</p>
+              <div class="project-tags">
+                <span>Motion</span><span>After Effects</span><span class="tl">Video</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="motion">
+            <div class="project-thumb-wrap">
+              <div class="thumb-placeholder" style="background: linear-gradient(135deg,#0d0d0d,#2d2d2d);">🎥</div>
+              <span class="media-badge">Video</span>
+              <a href="https://drive.google.com/file/d/1plwm2ahNmG0YOPMDn6zuSUQjUVcukk0V/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="thumb-overlay">
+                ▶ Play Video
+              </button>
+            </div>
+            <div class="project-body">
+              <span class="project-course">Motion Design</span>
+              <h3>Final MOGRTS — Motion Graphics Templates</h3>
+              <p>Broadcast-ready animated templates and motion design systems.</p>
+              <div class="project-tags">
+                <span>Motion</span><span>MOGRTS</span><span class="tl">Video</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div id="empty-state">
+          <p style="font-size: 1.1rem;">No projects match this filter.</p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section page-hero" id="contact">
+        <p class="eyebrow">Get In Touch</p>
+        <h1>Let's connect.</h1>
+        <p class="lead narrow">
+          Whether it's a collaboration, a question about my work, or just to say hello —
+          I'd love to hear from you.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="contact-grid">
+          <div class="form-card">
+            <h2>Send a message</h2>
+
+            <div id="contact-form">
+              <div class="field-group">
+                <div class="field-row">
+                  <div class="field">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Jane Smith" autocomplete="name" />
+                  </div>
+                  <div class="field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="jane@example.com" autocomplete="email" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="subject">Subject</label>
+                  <select id="subject">
+                    <option value="" selected disabled>What's this about?</option>
+                    <option>Collaboration opportunity</option>
+                    <option>Feedback on my work</option>
+                    <option>Academic inquiry</option>
+                    <option>Just saying hi</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" placeholder="Tell me what's on your mind…"></textarea>
+                </div>
+
+                <div>
+                  <button class="submit-btn" id="submit-btn" type="button">Send Message →</button>
+                </div>
+
+                <p id="form-error" style="color:#c0392b;font-size:0.88rem;display:none;margin:0;">
+                  Please fill in all fields before sending.
+                </p>
+              </div>
+            </div>
+
+            <div class="form-success" id="form-success">
+              <span class="success-icon">✅</span>
+              <h3>Message sent!</h3>
+              <p>Thanks for reaching out. I'll get back to you as soon as I can.</p>
+              <button class="submit-btn" id="reset-btn" type="button" style="margin-top:1rem;">Send another</button>
+            </div>
+          </div>
+
+          <div class="info-panel">
+            <div class="info-tile">
+              <div class="info-icon">📍</div>
+              <div class="info-tile-body">
+                <span class="info-tile-label">Location</span>
+                <span class="info-tile-value">Ontario, Canada</span>
+              </div>
+            </div>
+
+            <div class="info-tile">
+              <div class="info-icon">🎓</div>
+              <div class="info-tile-body">
+                <span class="info-tile-label">Education</span>
+                <span class="info-tile-value">Media Studies, Sheridan College</span>
+              </div>
+            </div>
+
+            <div class="info-tile">
+              <div class="info-icon">🎨</div>
+              <div class="info-tile-body">
+                <span class="info-tile-label">Focus</span>
+                <span class="info-tile-value">Design, Branding & UX</span>
+              </div>
+            </div>
+
+            <div class="info-tile">
+              <div class="info-icon">⚡</div>
+              <div class="info-tile-body">
+                <span class="info-tile-label">Open to</span>
+                <span class="info-tile-value">Collaborations, freelance & feedback</span>
+              </div>
+            </div>
+
+            <div class="dark-tile">
+              <p class="eyebrow" style="color:rgba(255,255,255,0.5);">Quick links</p>
+              <p>Want to see more before reaching out? Explore my work or read my full profile.</p>
+              <div style="display:flex;gap:0.7rem;flex-wrap:wrap;">
+                <a class="btn btn-light" href="#work" style="color:#fff;border-color:rgba(255,255,255,0.4);">View Work</a>
+                <a class="btn btn-light" href="#profile" style="color:#fff;border-color:rgba(255,255,255,0.4);">My Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section quote-panel">
+        <div class="card quote-card">
+          <p class="eyebrow">Based in Ontario</p>
+          <blockquote>
+            "I care about doing things properly — and that includes how I communicate."
+          </blockquote>
+          <a class="btn btn-dark" href="#home" style="margin-top:1rem;">Back to Top</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Andreas Kounavis · Ontario, Canada · <a href="#contact">Get in touch</a></p>
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div class="lightbox-header">
+        <h3 id="lb-title">Video</h3>
+        <button class="lightbox-close" id="lb-close" type="button">✕</button>
+      </div>
+      <div class="lightbox-body">
+        <video id="lb-video" controls playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.getElementById('site-nav');
+
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    // active nav on click
+    const navLinks = document.querySelectorAll('.site-nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(item => item.classList.remove('active'));
+        link.classList.add('active');
+        if (window.innerWidth <= 760) {
+          siteNav.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // work filter
+    const filterBar = document.getElementById('filter-bar');
+    const cards = document.querySelectorAll('.project-card');
+    const emptyState = document.getElementById('empty-state');
+
+    if (filterBar) {
+      filterBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+
+        filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visible = 0;
+
+        cards.forEach(card => {
+          const categories = (card.dataset.category || '').split(' ');
+          const show = filter === 'all' || categories.includes(filter);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+
+        emptyState.style.display = visible === 0 ? 'block' : 'none';
+      });
+    }
+
+    // video lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbVideo = document.getElementById('lb-video');
+    const lbTitle = document.getElementById('lb-title');
+    const lbClose = document.getElementById('lb-close');
+
+    document.querySelectorAll('[data-video]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        lbVideo.src = btn.dataset.video;
+        lbTitle.textContent = btn.dataset.title || 'Video';
+        lightbox.classList.add('open');
+        lbVideo.play().catch(() => {});
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lbVideo.pause();
+      lbVideo.src = '';
+    }
+
+    if (lbClose) {
+      lbClose.addEventListener('click', closeLightbox);
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+    }
+
+    // contact form demo
+    const submitBtn = document.getElementById('submit-btn');
+    const resetBtn = document.getElementById('reset-btn');
+
+    function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value.trim();
+      const errEl = document.getElementById('form-error');
+
+      if (!name || !email || !subject || !message) {
+        errEl.style.display = 'block';
+        return;
+      }
+
+      errEl.style.display = 'none';
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+
+    function resetForm() {
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('subject').selectedIndex = 0;
+      document.getElementById('message').value = '';
+      document.getElementById('contact-form').style.display = 'block';
+      document.getElementById('form-success').style.display = 'none';
+      document.getElementById('form-error').style.display = 'none';
+    }
+
+    if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
+    if (resetBtn) resetBtn.addEventListener('click', resetForm);
+  </script>
+</body>
+</html>
